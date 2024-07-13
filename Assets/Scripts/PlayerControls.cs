@@ -8,8 +8,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float controlSpeed = 30;
 
     // these two values are supposed to be RELATIVE to the rig (5f)
+
+    // maybe change this to be local to 230?
     [SerializeField] float xRange = 5f;
-    [SerializeField] float yRange = 3f;
 
     // Update is called once per frame
     void Update()
@@ -29,7 +30,7 @@ public class PlayerControls : MonoBehaviour
         float newYPosition = transform.localPosition.y + yOffset;
 
         float clampedXPos = Mathf.Clamp(rawXPosition, -xRange, xRange);
-        float clampedYPos = Mathf.Clamp(newYPosition, -yRange, yRange);
+        // float clampedYPos = Mathf.Clamp(newYPosition, -yRange, yRange);
 
         // transform.localPosition IS A FLOAT:
         transform.localPosition = new Vector3
