@@ -43,9 +43,6 @@ public class PlayerControls : MonoBehaviour
         float yawFromPosition = transform.localPosition.x * positionYawFactor;
         float yawFromControlThrow = xThrow * controlYawFactor;
 
-        // float rollFromPosition = transform.localPosition.z * positionRollFactor;
-        float rollFromControlThrow = transform.localRotation.z * controlRollFactor;
-
         // the extra yThrow * controlPitchFactor makes the plane nose move up and down more: 
         float pitch = pitchFromPosition + pitchFromControlThrow;
         // float yaw = transform.localPosition.x * positionYawFactor;
@@ -55,7 +52,7 @@ public class PlayerControls : MonoBehaviour
         // transform.localRotation.x wouldn't work. Order in which we change the axes matters.
         // why do we use Quaternion.Euler(-30, 30, 0)? idk, but it rotates our obj.
         // pitch, yaw, and roll:
-        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);       // why don't we use this for position?
     }
 
     // translation on the horizontal/vertical axes
@@ -66,7 +63,7 @@ public class PlayerControls : MonoBehaviour
         yThrow = Input.GetAxis("Vertical");    // throw as in pilot throws joystick from up/down
 
         // float xOffset = 0.001f;
-        float xOffset = xThrow * controlSpeed * Time.deltaTime;        // how is it that Time.deltaTime makes it slow?
+        float xOffset = xThrow * controlSpeed * Time.deltaTime;        // how is it that Time.deltaTime makes it slow? Cuz its a small decimal num (many times less than 1)
 
         float yOffset = yThrow * controlSpeed * Time.deltaTime;
 
