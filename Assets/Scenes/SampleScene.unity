@@ -2040,7 +2040,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.1347154, y: -0, z: -0, w: 0.99088436}
-  m_LocalPosition: {x: 0, y: 8.59, z: -27.970001}
+  m_LocalPosition: {x: 0, y: 7, z: -27.970001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2376,6 +2376,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 857858542}
     m_Modifications:
+    - target: {fileID: 3863082992144899957, guid: 81ddaef9d4697d84ba75e74a69f45a43, type: 3}
+      propertyPath: yRange
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4640082839775715069, guid: 81ddaef9d4697d84ba75e74a69f45a43, type: 3}
       propertyPath: m_Name
       value: Player Ship
@@ -2390,7 +2394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5417604327655588935, guid: 81ddaef9d4697d84ba75e74a69f45a43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5417604327655588935, guid: 81ddaef9d4697d84ba75e74a69f45a43, type: 3}
       propertyPath: m_LocalRotation.w
