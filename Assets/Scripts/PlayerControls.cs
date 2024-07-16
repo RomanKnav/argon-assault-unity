@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,14 +24,18 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float positionRollFactor = 2f;
     [SerializeField] float controlRollFactor = 13f;
 
+    // ARRAY FOR THE LASERS:
+    [SerializeField] GameObject[] lasers;
 
-    float xThrow, yThrow;   // values between -1 and 1, depending for how long player holds the directional buttons
+
+    float xThrow, yThrow, fire;   // values between -1 and 1, depending for how long player holds the directional buttons
 
     // Update is called once per frame
     void Update()
     {
         ProcessTranslation();
         ProcessRotation();
+        ProcessFiring();
     }
 
     // NEED TO CHANGE ROLL ON CONTROL THROW
@@ -80,5 +85,28 @@ public class PlayerControls : MonoBehaviour
             clampedYPos,
             transform.localPosition.z
         );
+    }
+
+    void ProcessFiring() {
+        if (Input.GetButton("Fire1")) {
+            ActivateLaser();
+        }
+        else {
+            DeactivateLaser();
+        }
+    }
+
+    void ActivateLaser() {
+        foreach (GameObject item in lasers)
+        {
+            item.SetActive(true);
+        }
+    }
+
+    void DeactivateLaser() {
+        foreach (GameObject item in lasers)
+        {
+            item.SetActive(false);
+        }
     }
 }
