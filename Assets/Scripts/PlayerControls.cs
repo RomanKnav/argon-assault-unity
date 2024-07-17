@@ -15,11 +15,11 @@ public class PlayerControls : MonoBehaviour
     // these two values are supposed to be RELATIVE to the rig (5f)
 
     // SerializeField is just 1 of MANY attributes
-    [SerializeField] float xRange = 10f;
-    [SerializeField] float yRange = 5f;     // player should be moved RELATIVE to camera, not other way around.
+    [SerializeField] float xRange = 20f;
+    [SerializeField] float yRange = 10f;     // player should be moved RELATIVE to camera, not other way around.
 
     [Header("change the pitch (x axis rotation)")] 
-    [SerializeField] float positionPitchFactor = 3.5f;
+    [SerializeField] float positionPitchFactor = 0.2f;
     [SerializeField] float controlPitchFactor = 10f;
 
     [Header("change the yaw (y axis rotation)")] 
