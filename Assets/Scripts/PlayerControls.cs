@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
@@ -6,25 +7,32 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 { 
+    // this is simply a label for our public vars
+    [Header("General Setup Settings")]
+    [Tooltip("How fast ship moves up/down (based on player input)")] 
     [SerializeField] float controlSpeed = 30;
 
     // these two values are supposed to be RELATIVE to the rig (5f)
 
-    // maybe change this to be local to 230?
+    // SerializeField is just 1 of MANY attributes
     [SerializeField] float xRange = 10f;
     [SerializeField] float yRange = 5f;     // player should be moved RELATIVE to camera, not other way around.
 
+    [Header("change the pitch (x axis rotation)")] 
     [SerializeField] float positionPitchFactor = 3.5f;
     [SerializeField] float controlPitchFactor = 10f;
 
+    [Header("change the yaw (y axis rotation)")] 
     [SerializeField] float positionYawFactor = 2f;
     [SerializeField] float controlYawFactor = 12f;
 
     // NEED TO MAKE NEW CRAP FOR ROLL (Z)
+    [Header("change the roll (z axis rotation)")] 
     [SerializeField] float positionRollFactor = 2f;
     [SerializeField] float controlRollFactor = 13f;
 
     // ARRAY FOR THE LASERS:
+    [Header("Laser gun array")] 
     [SerializeField] GameObject[] lasers;
 
 
@@ -89,24 +97,28 @@ public class PlayerControls : MonoBehaviour
 
     void ProcessFiring() {
         if (Input.GetButton("Fire1")) {
-            ActivateLaser();
+            SetLasersActive(true);
+            // ActivateLaser();
         }
         else {
-            DeactivateLaser();
+            // DeactivateLaser();
+            SetLasersActive(false);
         }
     }
 
-    void ActivateLaser() {
+    void SetLasersActive(bool v)
+    {
         foreach (GameObject item in lasers)
         {
-            item.SetActive(true);
-        }
-    }
-
-    void DeactivateLaser() {
-        foreach (GameObject item in lasers)
-        {
-            item.SetActive(false);
+            var em = item.GetComponent<ParticleSystem>().emission; 
+            // his MUCH cleaner code:
+            // em.enabled = v;
+            if (v) {
+                em.enabled = true;
+            }
+            else {
+                em.enabled = false;
+            }
         }
     }
 }
