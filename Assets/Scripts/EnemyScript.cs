@@ -12,6 +12,8 @@ public class EnemyScript : MonoBehaviour
     // [SerializeField] int scoreBoard;
     Scoreboard scoreBoard;
 
+    [SerializeField] int health;
+
     void Start() {
         scoreBoard = FindObjectOfType<Scoreboard>();   // does type just refer to name of obj? NO. It finds a component (in our case a script)
         /* CRAZY: looks through the ENTIRE project for an object of type Scoreboard. This doesn't go for the ScoreBoard game obj. 
@@ -21,8 +23,13 @@ public class EnemyScript : MonoBehaviour
     // destroy obj if hit by particle:
     void OnParticleCollision(GameObject other)
     {
-        KillEnemy();
-
+        if (health > 0) {
+            health--;
+            Debug.Log($"{this.name}'s health is {health}");
+        } else {
+            KillEnemy();
+        }
+        
         IncreaseScore();
     }
 
